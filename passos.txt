@@ -1,0 +1,26 @@
+# Preparando o Ambiente:
+
+# Utilizaremos o GULP para minificar código e imagens
+# iniciar o npm : npm init --yes
+# npm install --save-dev gulp gulp-sass
+
+#criar o .gitignore
+#adicioanr o node_modules
+
+# adicionei o script no package.json
+      "scripts": {
+    "build": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+#npm run build para testar
+
+#configurar o gulpfile adicionar as importacoes
+
+#configurar a compressão e saída dos elemento
+
+function styles(){
+    return gulp.src('./src/styles/*.scss')
+        .pipe(sass({outputStyle: 'compressed'}))
+        .pipe(gulp.dest('./dist/css'));
+}
