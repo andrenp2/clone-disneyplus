@@ -2,6 +2,13 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 const imagemin = require('gulp-imagemin');
+const uglify = require('gulp-uglify');
+
+function scripts() {
+    return gulp.src('./src/scripts/*.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('./dist/js'));
+}
 
 // funcao criada para comprimir o css
 function styles(){
@@ -16,8 +23,9 @@ function images(){
         .pipe(gulp.dest('./dist/images')); // adiciona em uma pasta nova dist/css
 }
 
-exports.default = gulp.parallel(styles, images); // funcao default
+exports.default = gulp.parallel(styles, images, scripts); // funcao default
 exports.watch = function() {
     gulp.watch('./src/styles/*.scss', gulp.parallel(styles)); // adicionado o watcher para os arquivos de estilo
     // watcher é responsável por salvar e compilar direto sem ter que usar o npm run
+    gulp.watch('./src/scripts/*.js', gulp.parallel(scripts));
 }
